@@ -8,48 +8,67 @@ class Main extends Component {
 
     this.state = {
       subtotal: '',
+      tax: '',
+      tip: '',
     };
   }
 
-  updatesubtotal(event) {
+  updateSubtotal(event) {
     this.setState({
       subtotal: event.target.value,
     });
   }
 
+  updateTax(event) {
+    this.setState({
+      tax: event.target.value,
+    });
+  }
+
+  updateTip(event) {
+    this.setState({
+      tip: event.target.value,
+    });
+  }
+
   render() {
-    const { subtotal } = this.state;
+    const {
+      subtotal,
+      tax,
+      tip,
+    } = this.state;
 
-    let total = subtotal;
+    const total = +subtotal + +tax + +tip;
 
-    if (subtotal === '') {
-      total = '_______';
-    }
+    // if (subtotal === '') {
+    //   total = '0';
+    // }
 
     return (
       <main>
         <Input
           label="Subtotal"
-          min="0"
           value={subtotal}
-          onChange={event => this.updatesubtotal(event)}
+          onChange={event => this.updateSubtotal(event)}
         />
-        {/* <Input
+        <Input
           label="Tax"
-          min="0"
+          value={tax}
+          onChange={event => this.updateTax(event)}
         />
         <Input
           label="Tip"
-          min="0"
-        /> */}
+          value={tip}
+          onChange={event => this.updateTip(event)}
+        />
         <h2>
           Grand Total:
-          &nbsp;
+          &nbsp;$
           {total}
         </h2>
         {/* <ul>
           <li>
-            
+            You tipped %{percentage}
           </li>
         </ul> */}
       </main>
