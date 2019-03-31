@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import Input from '../Input/Input';
+import Table from '../Table/Table';
 
 class Main extends Component {
   constructor(props) {
@@ -61,16 +62,12 @@ class Main extends Component {
           value={tip}
           onChange={event => this.updateTip(event)}
         />
+        <Table />
         <h2>
           Grand Total:
           &nbsp;$
           {total}
         </h2>
-        {/* <ul>
-          <li>
-            You tipped %{percentage}
-          </li>
-        </ul> */}
       </main>
     );
   }
