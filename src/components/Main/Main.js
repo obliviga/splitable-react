@@ -5,15 +5,15 @@ import Input from '../Input/Input';
 class Main extends Component {
   constructor(props) {
     super(props);
-  
+
     this.state = {
       subtotal: '',
     };
   }
 
-  updatesubtotal(evt) {
+  updatesubtotal(event) {
     this.setState({
-      subtotal: evt.target.value
+      subtotal: event.target.value,
     });
   }
 
@@ -32,7 +32,7 @@ class Main extends Component {
           label="Subtotal"
           min="0"
           value={subtotal}
-          onChange={evt => this.updatesubtotal(evt)}
+          onChange={event => this.updatesubtotal(event)}
         />
         {/* <Input
           label="Tax"
