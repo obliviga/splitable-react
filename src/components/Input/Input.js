@@ -38,6 +38,6 @@ Input.propTypes = {
 Input.defaultProps = {
   label: null,
   type: 'number',
-  min: null,
+  min: '0',
   max: null,
 };
