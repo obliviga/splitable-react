@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Row from './Row';
-import Input from '../Input/Input';
 
 import './table.scss';
 
@@ -10,29 +9,36 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
-    // this.state = {
-    //   name: '',
-    //   item1: '',
-    // };
+    this.state = {
+      people: 2,
+    };
   }
 
-  // updateName(event) {
-  //   this.setState({
-  //     name: event.target.value,
-  //   });
-  // }
+  addPerson() {
+    const { people } = this.state;
 
-  // updateItem1(event) {
-  //   this.setState({
-  //     item1: event.target.value,
-  //   });
-  // }
+    this.setState({
+      people: people + 1,
+    });
+  }
 
   render() {
-    // const {
-    //   name,
-    //   item1,
-    // } = this.state;
+    const {
+      people,
+    } = this.state;
+
+    const rowsArray = [];
+
+    // For every person, create a row
+    for (let i = 0; i < people; i += 1) {
+      rowsArray.push(
+        <Row
+          key={i}
+          rowsArray={rowsArray}
+          index={i}
+        />,
+      );
+    }
 
     return (
       <table>
@@ -40,12 +46,16 @@ class Table extends Component {
           <tr>
             <th>Name</th>
             <th>Due</th>
-            <th>Item1</th>
+            <th>Item Price</th>
+            <th>
+              <button type="button" onClick={() => this.addPerson(rowsArray)}>
+                Add Person
+              </button>
+            </th>
           </tr>
         </thead>
         <tbody>
-          <Row />
-          <Row />
+          {rowsArray}
         </tbody>
       </table>
     );
@@ -55,9 +65,9 @@ class Table extends Component {
 export default Table;
 
 Table.propTypes = {
-  // label: PropTypes.string,
+  // people: PropTypes.number,
 };
 
 Table.defaultProps = {
-  // label: null,
+  people: 2,
 };

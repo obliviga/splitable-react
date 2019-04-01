@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 import Input from '../Input/Input';
 
-// import './row.scss';
-
 class Row extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       name: '',
-      item1: '',
+      item: '',
     };
   }
 
@@ -21,19 +19,19 @@ class Row extends Component {
     });
   }
 
-  updateItem1(event) {
+  updateItem(event) {
     this.setState({
-      item1: event.target.value,
+      item: event.target.value,
     });
   }
 
   render() {
     const {
       name,
-      item1,
+      item,
     } = this.state;
 
-    const due = (item1);
+    const due = (item);
 
     return (
       <tr>
@@ -50,9 +48,17 @@ class Row extends Component {
         </td>
         <td>
           <Input
-            value={item1}
-            onChange={event => this.updateItem1(event)}
+            value={item}
+            onChange={event => this.updateItem(event)}
           />
+        </td>
+        <td>
+          <button
+            type="button"
+            onClick={() => this.removePerson()}
+          >
+            Remove
+          </button>
         </td>
       </tr>
     );
@@ -62,7 +68,7 @@ class Row extends Component {
 export default Row;
 
 Row.propTypes = {
-  // label: PropTypes.string,
+  // index: PropTypes.number,
 };
 
 Row.defaultProps = {
