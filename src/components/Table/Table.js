@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Row from './Row';
 
@@ -9,16 +8,23 @@ class Table extends Component {
   constructor(props) {
     super(props);
 
+    // Only two people by default
     this.state = {
-      people: 2,
+      people: [0, 1],
     };
   }
 
   addPerson() {
-    const { people } = this.state;
+    const {
+      people,
+    } = this.state;
 
+    // Increment the length of people by 1
+    people.push(people.length);
+
+    // Set the state after incrementing
     this.setState({
-      people: people + 1,
+      people,
     });
   }
 
@@ -27,18 +33,11 @@ class Table extends Component {
       people,
     } = this.state;
 
-    const rowsArray = [];
-
-    // For every person, create a row
-    for (let i = 0; i < people; i += 1) {
-      rowsArray.push(
-        <Row
-          key={i}
-          rowsArray={rowsArray}
-          index={i}
-        />,
-      );
-    }
+    // Create rows based on the amount of people.
+    // There should be two by default, based on the initial state
+    const rows = people.map(
+      key => <Row key={key} />,
+    );
 
     return (
       <table>
@@ -48,14 +47,14 @@ class Table extends Component {
             <th>Due</th>
             <th>Item Price</th>
             <th>
-              <button type="button" onClick={() => this.addPerson(rowsArray)}>
+              <button type="button" onClick={() => this.addPerson()}>
                 Add Person
               </button>
             </th>
           </tr>
         </thead>
         <tbody>
-          {rowsArray}
+          {rows}
         </tbody>
       </table>
     );
@@ -63,11 +62,3 @@ class Table extends Component {
 }
 
 export default Table;
-
-Table.propTypes = {
-  // people: PropTypes.number,
-};
-
-Table.defaultProps = {
-  people: 2,
-};
