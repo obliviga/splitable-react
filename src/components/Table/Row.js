@@ -52,14 +52,6 @@ class Row extends Component {
             onChange={event => this.updateItem(event)}
           />
         </td>
-        <td>
-          <button
-            type="button"
-            onClick={() => this.removePerson()}
-          >
-            Remove
-          </button>
-        </td>
       </tr>
     );
   }

@@ -11,7 +11,6 @@ class Main extends Component {
       subtotal: '',
       tax: '',
       tip: '',
-      people: 2,
     };
   }
 
@@ -38,14 +37,9 @@ class Main extends Component {
       subtotal,
       tax,
       tip,
-      people,
     } = this.state;
 
     const total = +subtotal + +tax + +tip;
-
-    // if (subtotal === '') {
-    //   total = '0';
-    // }
 
     return (
       <main>
@@ -64,7 +58,7 @@ class Main extends Component {
           value={tip}
           onChange={event => this.updateTip(event)}
         />
-        <Table rows={people} />
+        <Table />
         <h2>
           Grand Total:
           &nbsp;$
