@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 import Input from '../Input/Input';
 
@@ -31,7 +30,11 @@ class Row extends Component {
       item,
     } = this.state;
 
-    const due = (item);
+    let due = item;
+
+    if (item === '') {
+      due = 0;
+    }
 
     return (
       <tr>
@@ -58,11 +61,3 @@ class Row extends Component {
 }
 
 export default Row;
-
-Row.propTypes = {
-  // index: PropTypes.number,
-};
-
-Row.defaultProps = {
-  // label: null,
-};
