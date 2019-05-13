@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import shortid from 'shortid';
 
 import Row from './Row';
 
@@ -66,28 +65,34 @@ class Table extends Component {
     );
 
     return (
-      <table>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Due</th>
-            <th>Item Price</th>
-            <th>
-              <button type="button" onClick={() => this.addPerson()}>
-                Add Person
-              </button>
-            </th>
-            <th>
-              <button type="button" onClick={() => this.removePerson()} disabled={isDisabled}>
-                Remove Person
-              </button>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {rows}
-        </tbody>
-      </table>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Due</th>
+              <th>Item Price</th>
+              <th>
+                <button type="button" onClick={() => this.addPerson()}>
+                  Add Person
+                </button>
+              </th>
+              <th>
+                <button type="button" onClick={() => this.removePerson()} disabled={isDisabled}>
+                  Remove Person
+                </button>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows}
+          </tbody>
+        </table>
+        <h2>
+          Itemized Total:
+          &nbsp;$
+        </h2>
+      </div>
     );
   }
 }
