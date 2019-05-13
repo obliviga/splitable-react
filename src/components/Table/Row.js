@@ -8,7 +8,8 @@ class Row extends Component {
 
     this.state = {
       name: '',
-      item: '',
+      itemInput: '',
+      items: [0],
     };
   }
 
@@ -20,19 +21,40 @@ class Row extends Component {
 
   updateItem(event) {
     this.setState({
-      item: event.target.value,
+      itemInput: event.target.value,
+    });
+  }
+
+  addItem() {
+    const {
+      items,
+    } = this.state;
+
+    // Increment the length of items by 1
+    items.push(items.length);
+
+    // Set the state after incrementing
+    this.setState({
+      items,
     });
   }
 
   render() {
     const {
       name,
-      item,
+      itemInput,
+      items,
     } = this.state;
 
-    let due = item;
+    // Create item inputs based on the amount of items.
+    // There should be 1 by default per row, based on the initial state
+    const itemInputs = items.map(
+      item => <Input key={item} value={itemInput} onChange={event => this.updateItem(event)} />,
+    );
 
-    if (item === '') {
+    let due = itemInput;
+
+    if (itemInput === '') {
       due = 0;
     }
 
@@ -50,10 +72,10 @@ class Row extends Component {
           {due}
         </td>
         <td>
-          <Input
-            value={item}
-            onChange={event => this.updateItem(event)}
-          />
+          {itemInputs}
+        </td>
+        <td>
+          <button type="button" onClick={() => this.addItem()}>Add item</button>
         </td>
       </tr>
     );
