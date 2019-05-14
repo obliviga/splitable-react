@@ -10,7 +10,14 @@ class Table extends Component {
 
     // Two people by default
     this.state = {
-      people: [0, 1],
+      people: {
+        0: {
+          name: '',
+        },
+        1: {
+          name: '',
+        },
+      },
       isDisabled: true,
     };
   }
@@ -20,8 +27,10 @@ class Table extends Component {
       people,
     } = this.state;
 
+    const peopleQuantity = Object.keys(people).length;
+
     // Increment the length of people by 1
-    people.push(people.length);
+    people[peopleQuantity] = { name: '' };
 
     // Set the state after incrementing
     // Adding a person enables the remove button
@@ -60,9 +69,12 @@ class Table extends Component {
 
     // Create rows based on the amount of people.
     // There should be two by default, based on the initial state
-    const rows = people.map(
-      person => <Row key={person} />,
-    );
+    // const rows = people.map(
+    //   person => <Row key={person} />,
+    // );
+
+
+    
 
     return (
       <div>
@@ -85,7 +97,9 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
-            {rows}
+            {Object.keys(people).map(person => (
+              <Row key={person} />
+            ))}
           </tbody>
         </table>
         <h2>
