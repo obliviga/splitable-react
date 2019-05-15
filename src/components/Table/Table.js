@@ -45,8 +45,10 @@ class Table extends Component {
       people,
     } = this.state;
 
+    const peopleQuantity = Object.keys(people).length;
+
     // Decrement the length of people by 1
-    people.pop();
+    delete people[peopleQuantity - 1];
 
     // Set the state after decrementing
     this.setState({
@@ -54,7 +56,7 @@ class Table extends Component {
     });
 
     // If two people, disable remove button
-    if (people.length === 2) {
+    if (peopleQuantity === 3) {
       this.setState({
         isDisabled: true,
       });
@@ -66,15 +68,6 @@ class Table extends Component {
       people,
       isDisabled,
     } = this.state;
-
-    // Create rows based on the amount of people.
-    // There should be two by default, based on the initial state
-    // const rows = people.map(
-    //   person => <Row key={person} />,
-    // );
-
-
-    
 
     return (
       <div>
@@ -97,6 +90,8 @@ class Table extends Component {
             </tr>
           </thead>
           <tbody>
+            {/* Create rows based on the amount of people.
+            There should be two by default, based on the initial state */}
             {Object.keys(people).map(person => (
               <Row key={person} />
             ))}
